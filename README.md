@@ -9,7 +9,6 @@ Welcome! In this 4–5 hour Featurethon, choose one project and build a focused 
 | [Simple React Ecommerce](https://github.com/alim1496/simple-react-ecommerce) · [Guide](./simple-react-ecommerce/README.md)<br>Frontend shop demo with cart and wishlist. | 18+; not 19 (use 20+ LTS) | npm | Internet for product data | Low · **NOT READY:** clean install not confirmed |
 | [Tripix](https://github.com/MiladJoodi/Tripix) · [Guide](./Tripix/README.md)<br>Travel search and sample booking demo. | 20.9+ | npm | None | Low · **READY WITH WARNINGS:** lint script fails |
 | [PancakeMaker](https://github.com/momentmaker/pancakemaker) · [Guide](./pancakemaker/README.md)<br>Offline-first expense tracker. | 20+ | npm 10.9.0 | Cloudflare and Resend only for optional sync | Low · **READY WITH WARNINGS:** lockfile version mismatch |
-| [IT Tools](https://github.com/CorentinTh/it-tools) · [Guide](./it-tools/README.md)<br>Browser-based developer utilities. | 18.18.2 pinned (EOL); Node 24 was audited | pnpm 9.11.0 | None | Low · **READY WITH WARNINGS:** old Node pin |
 
 ## Before you start
 
