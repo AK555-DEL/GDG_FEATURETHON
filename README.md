@@ -1,28 +1,87 @@
-# GDG Featurethon
+# FEATURETHON'26
 
-Welcome! In this 4–5 hour Featurethon, choose one project and build a focused feature. Each project stays in its original GitHub repository; this central repository provides the links and quick-start guides.
+Organised by Google Developer Groups (GDG), Gokaraju Lailavathi Engineering College.
 
-## Choose a project
+Explore an existing web application, identify a genuine user problem, propose a practical improvement, and implement a meaningful feature or working prototype to demonstrate to the jury. The challenge is to improve the application, not rebuild it from scratch.
 
-| Project | Required Node.js | Package manager | Additional requirements | Setup difficulty / readiness |
+## Event format
+
+30 teams take part and are randomly assigned to one of three projects, about 10 teams per project. Teams choose neither their project nor their position in the order. Teams compete only against other teams on the same project. A jury evaluates each project separately; one winner is selected per project, for three winners total.
+
+This is Round 1: [TO BE CONFIRMED: whether there is a later round]. Team size: [TO BE CONFIRMED].
+
+## Projects
+
+Projects are assigned; teams do not choose one.
+
+| Project | Description | Required Node.js | Package Manager | Additional Requirements |
 | --- | --- | --- | --- | --- |
-| [Simple React Ecommerce](https://github.com/alim1496/simple-react-ecommerce) · [Guide](./simple-react-ecommerce/README.md)<br>Frontend shop demo with cart and wishlist. | 18+; not 19 (use 20+ LTS) | npm | Internet for product data | Low · **NOT READY:** clean install not confirmed |
-| [Tripix](https://github.com/MiladJoodi/Tripix) · [Guide](./Tripix/README.md)<br>Travel search and sample booking demo. | 20.9+ | npm | None | Low · **READY WITH WARNINGS:** lint script fails |
-| [PancakeMaker](https://github.com/momentmaker/pancakemaker) · [Guide](./pancakemaker/README.md)<br>Offline-first expense tracker. | 20+ | npm 10.9.0 | Cloudflare and Resend only for optional sync | Low · **READY WITH WARNINGS:** lockfile version mismatch |
+| [Simple React Ecommerce](https://github.com/alim1496/simple-react-ecommerce) · [Guide](./simple-react-ecommerce/README.md) | React storefront demo with product browsing, cart, and wishlist. | Vite 5: `^18.0.0` or `>=20.0.0`; Node 24 LTS recommended | npm | Internet for DummyJSON product data |
+| [Tripix](https://github.com/MiladJoodi/Tripix) · [Guide](./Tripix/README.md) | Sample travel search and booking app for bus, train, and air. | Next.js 16: `>=20.9.0`; Node 24 LTS recommended | npm | None; sample data included |
+| [PancakeMaker](https://github.com/momentmaker/pancakemaker) · [Guide](./pancakemaker/README.md) | Offline-first expense tracker with optional cloud sync. | `>=20`; Node 24 LTS recommended | npm 10.9.0 | Cloudflare and Resend only for optional sync |
 
-## Before you start
+A fresh Windows install of Simple React Ecommerce is **NOT TESTED**: a previous attempt did not finish. Check its guide before the event.
 
-- [Git](https://git-scm.com/install/) and a project-compatible [Node.js LTS installer](https://nodejs.org/en/download) are required. npm comes with Node.js.
-- [VS Code](https://code.visualstudio.com/download) and [Chrome](https://www.google.com/chrome/) are optional; any editor and modern browser work.
-- Use PowerShell. The documented local workflows do not require Docker or WSL.
-- Follow each guide's package-manager version and install command. Do not delete or regenerate lockfiles.
+## Event rules
+
+- The event starts at 9:00 AM sharp. Registration closes at 9:30 AM.
+- Participants should remain at the venue during the event, except for emergencies, medical needs, or short breaks with a coordinator's permission.
+- Follow coordinator instructions, maintain discipline, and ensure fair opportunities for all teams.
+
+## Presentation
+
+Each team has 5 minutes to present, followed by 2 minutes for jury questions. Demonstrate the original problem, your proposed solution, the feature or prototype you implemented, and how it benefits users.
+
+## Judging
+
+Each judge scores every team from 1 to 5 in each category, for a maximum of 25 points per judge.
+
+| Category | What is evaluated |
+| --- | --- |
+| Problem Identification & Purpose | How clearly the team identifies a genuine user problem and explains its importance |
+| Innovation & Originality | Creativity and uniqueness of the proposed solution |
+| Technical Depth & Implementation | Quality and functionality of the implemented feature or prototype |
+| User Experience & Feasibility | Whether the improvement is useful, practical, and easy to use |
+| Presentation & Demonstration | How clearly the team explains and demonstrates its solution |
+
+A purely theoretical presentation without a meaningful implementation or prototype should not receive the same implementation credit as a demonstrated solution.
+
+| Score | Description |
+| --- | --- |
+| 5 | Exceeds one or more brief goals in an innovative way |
+| 4 | Moderately exceeds one or more brief goals |
+| 3 | Meets one or more brief goals |
+| 2 | Nearly meets at least one brief goal |
+| 1 | Does not meet any brief goal but receives a participation point |
+
+For each project, calculate each team's average total across all judges evaluating that project. The highest average wins; exactly one winner is selected per project.
+
+Tie-breakers:
+1. Higher average Technical Depth & Implementation score.
+2. If still tied, higher average Problem Identification & Purpose score.
+3. If still tied, the head judge decides.
+
+## Prerequisites
+
+- [Git](https://git-scm.com/install/) is required to clone repositories.
+- [Node.js](https://nodejs.org/en/download) 24 LTS is a compatible recommendation for all three projects based on their published engine requirements. Node.js is required at the project-specific versions above; npm comes with it. PancakeMaker requires npm 10.9.0.
+- [Visual Studio Code](https://code.visualstudio.com/download) is optional.
+- [Google Chrome](https://www.google.com/chrome/) is optional; any modern browser can be used.
+- On Windows, use PowerShell. On macOS or Linux, use `npm` instead of `npm.cmd`.
 
 ## Participant workflow
 
-1. Choose one project and check its readiness note before installing.
-2. Fork that project's original repository on GitHub, then clone your fork using its guide.
-3. Create a feature branch: `git switch -c feat/short-feature-name`.
-4. Make a focused change, run the checks in the guide, then commit and push to your fork.
-5. Follow the submission method announced by organizers. No submission URL or judging rules are defined here. Open an upstream pull request only if the maintainers allow it.
+1. Check the project assigned to your team.
+2. Open its participant setup guide.
+3. Install the required software.
+4. Clone the original project locally.
+5. Install dependencies and start the application.
+6. Explore its existing functionality.
+7. Identify a genuine problem or missing feature and explain why it matters.
+8. Propose a practical, innovative solution and implement a meaningful part of it or develop a working prototype. A production-ready feature is not required; a theoretical presentation alone does not demonstrate implementation.
+9. Prepare the demonstration, including how the improved application benefits users.
+10. Present your work to the jury.
 
-Never commit `.env` files, API keys, passwords, or other secrets. If setup fails, share the project, operating system, command, and first useful error with organizers; redact credentials.
+Each team works on its local clone. Local Git commits are optional; no GitHub code submission is required.
+
+Never commit `.env` files, API keys, passwords, or other secrets.

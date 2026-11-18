@@ -4,17 +4,17 @@
 
 ## About the project
 
-Tripix is a travel-search and sample booking frontend for bus, train, and flight trips. Search and booking data are demo data stored in the browser; it does not purchase real tickets.
+Tripix is a sample travel search and booking app for bus, train, and air trips. It uses local demo data and does not purchase real tickets.
+
+This guide is for teams assigned to this project; see the [central event README](../README.md) for the event format and presentation details.
 
 ## Prerequisites
 
-- **Git** (clone the project): install the [Windows version](https://git-scm.com/install/) with the default options.
-- **Node.js 20.9+** (required by Next.js 16; includes npm): install the Windows LTS `.msi` from [nodejs.org](https://nodejs.org/en/download) and reopen PowerShell.
-- A modern browser. [VS Code](https://code.visualstudio.com/download) and [Chrome](https://www.google.com/chrome/) are optional.
+- **Git:** [install Git](https://git-scm.com/install/).
+- **Node.js:** [install Node.js 24 LTS](https://nodejs.org/en/download). Next.js 16 requires Node.js `>=20.9.0`; npm is included with Node.js.
+- [VS Code](https://code.visualstudio.com/download) and [Google Chrome](https://www.google.com/chrome/) are optional; any modern browser can be used.
 
-No database, API credentials, Docker, or WSL are needed for the local demo.
-
-## Verify installation
+## Verify software installation
 
 In PowerShell:
 
@@ -24,7 +24,7 @@ node -v
 npm.cmd -v
 ```
 
-Use Node 20.9 or newer; npm should print a version number.
+On macOS or Linux, use `npm` instead of `npm.cmd`.
 
 ## Clone the project
 
@@ -33,15 +33,17 @@ git clone https://github.com/MiladJoodi/Tripix.git
 cd Tripix
 ```
 
-For push access, fork the upstream repository first and clone your fork instead.
-
 ## Install dependencies
 
-Run from the folder containing `package.json` and `package-lock.json`:
+Run from the project root, where `package-lock.json` is located:
 
 ```powershell
 npm.cmd ci
 ```
+
+## Environment configuration
+
+No database, API credentials, or environment variables are required. Search and booking data are sample data stored in the browser.
 
 ## Run the application
 
@@ -49,22 +51,33 @@ npm.cmd ci
 npm.cmd run dev
 ```
 
-Keep the terminal open and visit [http://localhost:3000](http://localhost:3000). If Next.js reports another port, use that URL. Stop the server with **Ctrl+C**.
+## Open the application
+
+Visit [http://localhost:3000](http://localhost:3000). If Next.js reports another port, use that URL.
 
 ## Where to add features
 
-- `src/app/` — pages and routes.
+- `src/app/` — routes and pages.
 - `src/features/` — search and booking flows.
-- `src/components/` — shared interface components.
+- `src/components/` — shared interface.
 - `src/data/` — sample travel data.
 
 ## Troubleshooting
 
-- **Node version error:** install Node 20.9+ and reopen PowerShell.
-- **`npm ci` fails:** confirm you are in the project root and `package-lock.json` is present; do not switch package managers.
+- **Node version error:** use Node.js 24 LTS or another version meeting Next.js 16's `>=20.9.0` requirement.
 - **Port 3000 is busy:** use the alternate URL printed by Next.js.
-- **`npm run lint` fails:** the upstream script runs `next lint`, which is unsupported by the project's Next.js 16. The previous clean-clone audit's `npm run build` succeeded; manual browser flows were not tested.
+- **Lint:** the upstream `lint` script invokes `next lint`, which is unsupported by Next.js 16. Do not run it during the event.
+- **Lockfile metadata:** `package-lock.json` names the project `bilit`, while `package.json` names it `tripix`. Current `npm ci` is **NOT TESTED**; if it reports an out-of-sync lockfile, ask an organizer rather than regenerating the lockfile.
+- **Build:** `npm.cmd run build` is available. It succeeded in a previous clean-clone audit; the current upstream snapshot is **NOT TESTED** in this documentation audit.
+- **Current install and browser launch:** **NOT TESTED** in this documentation audit.
 
-## Submission
+## Final demonstration checklist
 
-Fork, branch, commit, and push to your fork. Follow [the central event instructions](../README.md); submit a pull request only if the maintainers permit it.
+- What problem did we identify?
+- Why does it matter to users?
+- What feature did we propose?
+- What did we implement?
+- Can we demonstrate it working?
+- How is the improved application better than the original?
+
+Present a meaningful implementation or working prototype, not only an idea. A production-ready feature is not required.

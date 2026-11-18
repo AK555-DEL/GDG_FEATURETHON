@@ -4,17 +4,18 @@
 
 ## About the project
 
-PancakeMaker is an offline-first expense tracker. Data stays in the browser; account-based cloud sync is optional.
+PancakeMaker is an offline-first expense tracker. Its monorepo contains the web app, shared TypeScript package, and optional cloud-sync API.
+
+This guide is for teams assigned to this project; see the [central event README](../README.md) for the event format and presentation details.
 
 ## Prerequisites
 
-- **Git**: install the [Windows version](https://git-scm.com/install/) with the default options.
-- **Node.js 20+** and **npm 10.9.0** (declared by the project): install the Windows LTS `.msi` from [nodejs.org](https://nodejs.org/en/download). If needed, set npm to the declared version with `npm.cmd install --global npm@10.9.0`.
-- A modern browser. [VS Code](https://code.visualstudio.com/download) and [Chrome](https://www.google.com/chrome/) are optional.
+- **Git:** [install Git](https://git-scm.com/install/).
+- **Node.js:** [install Node.js 24 LTS](https://nodejs.org/en/download). The project requires Node.js `>=20` and npm `10.9.0`.
+- [VS Code](https://code.visualstudio.com/download) and [Google Chrome](https://www.google.com/chrome/) are optional; any modern browser can be used.
+- Cloudflare and Resend are needed only for optional cloud sync.
 
-Cloudflare and Resend are needed only to configure or deploy cloud sync. No database, Docker, or WSL is required for local expense tracking.
-
-## Verify installation
+## Verify software installation
 
 In PowerShell:
 
@@ -24,7 +25,7 @@ node -v
 npm.cmd -v
 ```
 
-Use Node 20+ and confirm npm prints `10.9.0`.
+Confirm npm prints `10.9.0`. If needed, install that version with `npm.cmd install --global npm@10.9.0`. On macOS or Linux, use `npm` instead of `npm.cmd`.
 
 ## Clone the project
 
@@ -33,49 +34,67 @@ git clone https://github.com/momentmaker/pancakemaker.git
 cd pancakemaker
 ```
 
-For push access, fork the upstream repository first and clone your fork instead.
-
 ## Install dependencies
 
-The monorepo uses npm workspaces. The upstream quick-start specifies:
+Install from the monorepo root:
 
 ```powershell
 npm.cmd install
 ```
 
-The repository has a `package-lock.json`, but its root version is `1.8.0` while `package.json` says `1.8.1`. **NOT TESTED:** a clean install from the current upstream snapshot. If npm changes the lockfile, do not commit that change without organizer/maintainer approval.
+**NOT TESTED:** the current upstream `package.json` is version `1.8.1`, while the lockfile root is `1.8.0`. A clean install from the current snapshot has not been verified.
+
+## Environment configuration
+
+No configuration is needed for offline local expense tracking. Cloud sync is optional and requires Cloudflare Workers/D1 and Resend configuration.
 
 ## Run the application
 
-Build the shared workspace packages and apps from the repository root:
+Build shared packages from the monorepo root first:
 
 ```powershell
 npm.cmd run build
 ```
 
-For the frontend-only workflow (supported by the web workspace), run:
+Run the frontend (works offline):
 
 ```powershell
 npm.cmd run dev --workspace=@pancakemaker/web
 ```
 
-Open [http://localhost:5173](http://localhost:5173), or use the URL Vite prints. The root `npm.cmd run dev` starts both Vite and the Wrangler API; the API is unnecessary for offline expense tracking and sync needs Cloudflare/Resend configuration.
+For the optional API, run this in another terminal:
+
+```powershell
+npm.cmd run dev --workspace=@pancakemaker/api
+```
+
+The root `npm.cmd run dev` starts both development servers.
+
+## Open the application
+
+The web app is at [http://localhost:5173](http://localhost:5173). The optional API runs at [http://localhost:8787](http://localhost:8787).
 
 ## Where to add features
 
-- `apps/web/src/` — frontend, including `views/`, `components/`, and `db/`.
+- `apps/web/src/` — frontend, including views, components, and local database code.
 - `packages/shared/` — shared types and schemas.
-- `workers/api/` — optional cloud-sync API.
+- `workers/api/src/` — optional cloud-sync API.
 
 ## Troubleshooting
 
-- **Shared package cannot be resolved:** run `npm.cmd run build` from the monorepo root before starting the web workspace.
-- **Sync is unavailable:** expected in frontend-only mode; local expenses remain in the browser.
-- **Lint fails:** the web workspace calls `eslint`, which is not declared in the current workspace dependencies.
-- **Lockfile/install warning:** the current package and lock versions differ as noted above; do not delete the lockfile or run a separate install in a workspace.
+- **Shared package cannot be resolved:** run `npm.cmd run build` from the monorepo root before starting a workspace.
+- **Cloud sync is unavailable:** expected when using the offline frontend without the optional API and cloud configuration.
+- **Install warning:** the package and lockfile versions differ; a current clean install is **NOT TESTED**.
+- **Lint:** the web workspace calls `eslint`, which is not declared in the current workspace dependencies.
+- **Current build and server launch:** **NOT TESTED** in this documentation audit.
 
-The previous clean-clone audit on an earlier snapshot passed the build and 412 tests; current upstream lockfile consistency has not been verified.
+## Final demonstration checklist
 
-## Submission
+- What problem did we identify?
+- Why does it matter to users?
+- What feature did we propose?
+- What did we implement?
+- Can we demonstrate it working?
+- How is the improved application better than the original?
 
-Fork, branch, commit, and push to your fork. Follow [the central event instructions](../README.md); submit a pull request only if the maintainers permit it.
+Present a meaningful implementation or working prototype, not only an idea. A production-ready feature is not required.
