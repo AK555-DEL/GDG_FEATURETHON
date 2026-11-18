@@ -1,152 +1,140 @@
-# GDG FEATUREATHON
+# Simple React Ecommerce
 
-# Clone, Run, and Deploy
+**Original repository:** [https://github.com/alim1496/simple-react-ecommerce.git](https://github.com/alim1496/simple-react-ecommerce.git)
 
-This guide is for the first of the five project repositories planned for the club event. It explains how to set up the **Shopify** demo on your computer, run it, and deploy it.
+## 1. Overview
 
-## Repository 1: Shopify - Simple eCommerce App
+This is a React e-commerce demo with product browsing, cart, wishlist, and sample account flows. It uses React, TypeScript, Vite, Tailwind CSS, Redux Toolkit, and Cypress. Product data is requested from DummyJSON, so an internet connection is needed for product loading.
 
-**Source repository:** [alim1496/simple-react-ecommerce](https://github.com/alim1496/simple-react-ecommerce.git)
+## 2. Prerequisites
 
-Shopify is a frontend-only e-commerce demo built with React, TypeScript, Vite, Tailwind CSS, and Redux Toolkit. You can browse products, search, use categories, manage a cart and wishlist, and try the simulated login experience.
+Required:
 
-The app gets product data from [DummyJSON](https://dummyjson.com/), so it needs an internet connection. It does not need a database, environment variables, or a separately deployed backend.
+- Git.
+- Node.js 18 or newer, excluding Node 19 as required by Vite 5; use a current Node.js LTS release. The repository does not pin an exact Node version.
+- npm, included with Node.js.
+- A modern browser.
+- Internet access for the DummyJSON product API.
 
-## Before you start
+Docker is optional; the repository's Dockerfile currently refers to a `yarn.lock` file, but the project provides `package-lock.json`. **NOT TESTED:** Docker is not a verified setup path unless that mismatch is resolved. A GitHub account is needed only if you want to fork and push your work.
 
-Install these tools:
+## 3. Verify prerequisites
 
-| Tool | Version | Why you need it |
-| --- | --- | --- |
-| [Git](https://git-scm.com/downloads) | Current stable version | Downloads the project source code |
-| [Node.js](https://nodejs.org/en/download) | Current LTS recommended | Runs the development server and builds the app |
-| [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) | Included with Node.js | Installs the project's packages |
-| Modern browser: [Chrome](https://www.google.com/chrome/), [Edge](https://www.microsoft.com/edge/download), or [Firefox](https://www.mozilla.org/firefox/new/) | Current version | Opens the app |
-| [Docker Desktop](https://docs.docker.com/desktop/) (includes Docker Compose) | Optional | Runs the app in a production-like container |
-
-To check whether Git, Node.js, and npm are installed, open PowerShell or a terminal and run:
+In PowerShell:
 
 ```powershell
+node -v
+npm -v
 git --version
-node --version
-npm --version
 ```
 
-The repository does not pin a Node.js or npm version. Use a current Node.js LTS release; npm is included with Node.js. The commands below use the repository's `package-lock.json`.
+Confirm Node is version 18 or newer and is not version 19.
 
-## Run the app on your computer
+## 4. Fork and clone
 
-### 1. Open a terminal
-
-On Windows, open **PowerShell**. On macOS or Linux, open your terminal application.
-
-### 2. Clone the repository
-
-Cloning downloads a copy of the project to your computer:
+For work you plan to push, open the [original repository](https://github.com/alim1496/simple-react-ecommerce.git) on GitHub and select **Fork**. Then clone your fork, replacing `YOUR-USERNAME` with your GitHub username:
 
 ```powershell
-git clone https://github.com/alim1496/simple-react-ecommerce.git
-```
-
-Go into the new project folder:
-
-```powershell
+git clone https://github.com/YOUR-USERNAME/simple-react-ecommerce.git
 cd simple-react-ecommerce
 ```
 
-### 3. Install project dependencies
+To explore without pushing changes, clone the original URL instead.
 
-Run this from inside the `simple-react-ecommerce` folder:
+## 5. Install dependencies
+
+Use the committed `package-lock.json` with `npm ci`:
 
 ```powershell
 npm ci
 ```
 
-This installs the exact package versions recorded by the project. It may take a few minutes the first time.
+This installs the locked dependencies. If installation fails, check that you are in the folder containing `package.json` and `package-lock.json`.
 
-### 4. Start the development server
+## 6. Environment configuration
+
+No local environment file or database is required for the basic frontend. The app uses the external DummyJSON product API; an internet connection is required to load remote products.
+
+## 7. Run locally
+
+From the project folder:
 
 ```powershell
 npm run dev
 ```
 
-Keep this terminal open while you use the app. Open the URL printed in the terminal, usually <http://localhost:5173>.
+Keep the terminal open and use the local URL printed by Vite (normally [http://localhost:5173](http://localhost:5173)). Press **Ctrl+C** to stop the server.
 
-When you change source files, Vite refreshes the app in the browser. To stop the server, return to the terminal and press **Ctrl+C**.
+## 8. Verify the app
 
-## Check the project
+- Open the Vite URL and confirm the store page appears.
+- Confirm product cards load when internet access is available.
+- Try adding an item to the cart and wishlist.
+- Check the terminal and browser console for errors.
+- If Vite reports a different port, use the URL it prints.
 
-Run these commands from the project folder:
+## 9. Project structure
+
+| Path | Purpose |
+| --- | --- |
+| `src/` | Application source code. |
+| `src/components/` | Reusable interface components. |
+| `src/pages/` | Page-level views and routes. |
+| `src/redux/` | Redux Toolkit state management. |
+| `cypress/` | Cypress end-to-end tests. |
+| `package.json` | Scripts and dependency manifest. |
+
+Use the actual folder names in your checkout as the source of truth if the project structure changes.
+
+## 10. Start developing a feature
+
+Start with a small feature, such as a product card improvement, a cart interaction, or a usability fix. Search for the existing component or page that owns the behavior, follow nearby styling and state-management patterns, and keep `npm run dev` running to check changes in the browser.
+
+## 11. Test, build, and deploy
+
+Run the available checks:
 
 ```powershell
 npm run lint
 npm run build
 ```
 
-The build command checks and compiles the app, then puts the deployable files in the `dist` folder.
+In the audit, lint and build succeeded in the temporary clone, but the clean `npm ci` attempt did not finish after about 29 minutes, so a fresh install was not verified. Cypress tests were not run.
 
-To preview that production build on your computer:
-
-```powershell
-npm run preview
-```
-
-Open the URL printed in the terminal, normally <http://localhost:4173>. Press **Ctrl+C** to stop the preview server.
-
-## Run the Cypress tests (optional)
-
-First, start the app in one terminal:
+The repository includes Cypress end-to-end tests. Start the Vite server in one PowerShell terminal:
 
 ```powershell
 npm run dev
 ```
 
-Keep it running. Open a **second** terminal, go to the `simple-react-ecommerce` folder, and run either:
-
-```powershell
-npx cypress open
-```
-
-This opens the Cypress test interface. To run the tests in the terminal without opening the interface:
+In a second terminal, from the project folder, run:
 
 ```powershell
 npx cypress run
 ```
 
-The configured test server is <http://localhost:5173/>.
-
-## Docker deployment status
-
-Docker is optional. The current upstream `Dockerfile` copies `yarn.lock`, but the repository provides `package-lock.json` instead. Because of this mismatch, the checked-in Docker build may fail. Use the npm-based local setup or static hosting instructions below unless the upstream Docker configuration has been fixed.
-
-## Deploy to a static hosting service (optional)
-
-Build the production files:
+Keep the dev server running while Cypress tests run. To open Cypress interactively, use:
 
 ```powershell
-npm ci
-npm run build
+npx cypress open
 ```
 
-Upload the **contents** of the `dist` folder to a static host such as Netlify, Vercel, GitHub Pages, Azure Static Web Apps, or an Nginx server. If the host builds from the repository instead, use `npm run build` as the build command and `dist` as the output directory.
+The production build is written to `dist/`. Preview it locally with:
 
-This app uses client-side routes, including `/products`, `/search`, `/wishlist`, and `/account`. Configure your host to serve `index.html` for routes it does not recognize; otherwise, opening or refreshing one of those pages directly may show a 404 error. For Nginx, the fallback rule is:
-
-```nginx
-location / {
-    try_files $uri $uri/ /index.html;
-}
+```powershell
+npm run preview
 ```
 
-## Troubleshooting
+Use the preview URL Vite prints (normally [http://localhost:4173](http://localhost:4173)).
 
-- **`git`, `node`, or `npm` is not recognized:** Install the missing tool and reopen your terminal. Check the version with the commands in [Before you start](#before-you-start).
-- **`npm ci` fails:** Confirm you are in the `simple-react-ecommerce` folder and using a current Node.js LTS release. Check your internet connection and try `npm ci` again.
-- **The app cannot load products:** Check your internet connection and whether [DummyJSON](https://dummyjson.com/) is reachable.
-- **A port is already in use:** Another app may be using port 5173, 4173, or 3000. Stop that app or configure a different port.
-- **Docker build fails at `COPY yarn.lock`:** The upstream Dockerfile references a lockfile that is absent from the repository. Use the npm-based local setup or static hosting instructions instead.
-- **A page shows 404 after refresh on a deployed site:** Configure the static host's single-page-app fallback to `index.html`, as described above.
+**Docker:** The checked-in Dockerfile copies `yarn.lock`, while this repository has an npm lockfile. Docker has not been verified as a working participant setup path; prefer the npm workflow above.
 
-## More event repositories
+## 12. Troubleshooting and submission
 
-This README currently covers the first repository. Setup guides for the other four event repositories will be added when they are available.
+- **Product data is missing:** Confirm internet access and that the browser can reach DummyJSON. This frontend depends on a third-party API.
+- **`npm ci` fails:** Confirm Node is version 18 or newer, that you are in the project root, and that `package-lock.json` is present. Avoid replacing `npm ci` with a different package manager unless the project changes its lockfile.
+- **The dev server does not open:** Leave the terminal running and use the exact URL Vite prints. If port 5173 is occupied, Vite may select another port.
+- **Cypress fails to start:** Confirm dependencies were installed and allow Cypress to complete its first-run setup.
+- **Docker build fails:** The current Dockerfile expects `yarn.lock`, which is not present in the repository; use the documented npm workflow instead.
+
+For event work, fork the original project, create a feature branch, commit and push to your fork, then follow the organizers' announced submission process. Open an upstream pull request only if the maintainers accept contributions. Do not push directly to the original repository.
