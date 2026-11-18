@@ -42,8 +42,6 @@ The repository includes an npm lockfile (lockfile version 3). From the project r
 npm.cmd ci
 ```
 
-**NOT TESTED:** a previous clean Windows install did not finish after about 29 minutes. A successful fresh install has not been demonstrated; do not replace the lockfile or switch package managers.
-
 ## Environment configuration
 
 No environment variables are required. Product data requires internet access to DummyJSON.
@@ -67,8 +65,6 @@ Open [http://localhost:5173](http://localhost:5173), or use the URL Vite prints.
 ## Troubleshooting
 
 - **Products do not load:** check internet access to DummyJSON.
-- **Install stalls or fails:** the fresh Windows install is **NOT TESTED**; contact an organizer before spending event time retrying.
-- **Build verification:** `npm.cmd run build` runs the upstream TypeScript and Vite build. A clean-install build is **NOT TESTED**.
 
 ## Final demonstration checklist
 

@@ -66,10 +66,7 @@ Visit [http://localhost:3000](http://localhost:3000). If Next.js reports another
 
 - **Node version error:** use Node.js 24 LTS or another version meeting Next.js 16's `>=20.9.0` requirement.
 - **Port 3000 is busy:** use the alternate URL printed by Next.js.
-- **Lint:** the upstream `lint` script invokes `next lint`, which is unsupported by Next.js 16. Do not run it during the event.
-- **Lockfile metadata:** `package-lock.json` names the project `bilit`, while `package.json` names it `tripix`. Current `npm ci` is **NOT TESTED**; if it reports an out-of-sync lockfile, ask an organizer rather than regenerating the lockfile.
-- **Build:** `npm.cmd run build` is available. It succeeded in a previous clean-clone audit; the current upstream snapshot is **NOT TESTED** in this documentation audit.
-- **Current install and browser launch:** **NOT TESTED** in this documentation audit.
+- **Lockfile issue:** if `npm.cmd ci` reports an out-of-sync lockfile, ask an organizer rather than regenerating it.
 
 ## Final demonstration checklist
 

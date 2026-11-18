@@ -42,8 +42,6 @@ Install from the monorepo root:
 npm.cmd install
 ```
 
-**NOT TESTED:** the current upstream `package.json` is version `1.8.1`, while the lockfile root is `1.8.0`. A clean install from the current snapshot has not been verified.
-
 ## Environment configuration
 
 No configuration is needed for offline local expense tracking. Cloud sync is optional and requires Cloudflare Workers/D1 and Resend configuration.
@@ -84,9 +82,7 @@ The web app is at [http://localhost:5173](http://localhost:5173). The optional A
 
 - **Shared package cannot be resolved:** run `npm.cmd run build` from the monorepo root before starting a workspace.
 - **Cloud sync is unavailable:** expected when using the offline frontend without the optional API and cloud configuration.
-- **Install warning:** the package and lockfile versions differ; a current clean install is **NOT TESTED**.
-- **Lint:** the web workspace calls `eslint`, which is not declared in the current workspace dependencies.
-- **Current build and server launch:** **NOT TESTED** in this documentation audit.
+- **Lockfile issue:** if installation reports a version mismatch, ask an organizer rather than regenerating the lockfile.
 
 ## Final demonstration checklist
 
