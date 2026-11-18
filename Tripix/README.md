@@ -1,32 +1,34 @@
 # Tripix
 
-**Upstream:** [github.com/MiladJoodi/Tripix](https://github.com/MiladJoodi/Tripix)
+Tripix is a sample travel search and booking application for bus, train, and air trips. Existing flows include city and date selection, search filters, ticket selection, passenger details, review and confirmation screens, booking history, ticket views, and a profile area. It uses local sample data and does not purchase real tickets.
 
-## About the project
+**Upstream repository:** [MiladJoodi/Tripix](https://github.com/MiladJoodi/Tripix)
 
-Tripix is a sample travel search and booking app for bus, train, and air trips. It uses local demo data and does not purchase real tickets.
-
-This guide is for teams assigned to this project; see the [central event README](../README.md) for the event format and presentation details.
+For event details, see the [central README](../README.md).
 
 ## Prerequisites
 
-- **Git:** [install Git](https://git-scm.com/install/).
-- **Node.js:** [install Node.js 24 LTS](https://nodejs.org/en/download). Next.js 16 requires Node.js `>=20.9.0`; npm is included with Node.js.
-- [VS Code](https://code.visualstudio.com/download) and [Google Chrome](https://www.google.com/chrome/) are optional; any modern browser can be used.
+- [Git](https://git-scm.com/install/)
+- [Node.js](https://nodejs.org/en/download) 24 LTS is recommended. The upstream Next.js 16.2.1 dependency requires Node.js `>=20.9.0`.
+- npm, included with Node.js.
+- No database or API credentials are required; the app uses sample data.
+- [Visual Studio Code](https://code.visualstudio.com/download) and [Google Chrome](https://www.google.com/chrome/) are optional.
 
-## Verify software installation
+## Verify the tools
 
 In PowerShell:
 
 ```powershell
 git --version
-node -v
-npm.cmd -v
+node --version
+npm.cmd --version
 ```
 
-On macOS or Linux, use `npm` instead of `npm.cmd`.
+On macOS or Linux, run `npm --version` instead of `npm.cmd --version`.
 
 ## Clone the project
+
+In PowerShell:
 
 ```powershell
 git clone https://github.com/MiladJoodi/Tripix.git
@@ -35,46 +37,54 @@ cd Tripix
 
 ## Install dependencies
 
-Run from the project root, where `package-lock.json` is located:
+The repository contains an npm lockfile (`package-lock.json`, lockfile version 3). Run it from the project directory:
 
 ```powershell
 npm.cmd ci
 ```
 
+On macOS or Linux, use `npm ci`.
+
 ## Environment configuration
 
-No database, API credentials, or environment variables are required. Search and booking data are sample data stored in the browser.
+No database, API credentials, `.env` file, or environment variables are required. Search and booking data are included locally.
 
-## Run the application
+## Start the development server
 
 ```powershell
 npm.cmd run dev
 ```
 
-## Open the application
+Open [http://localhost:3000](http://localhost:3000). If Next.js reports another port, open the URL it prints.
 
-Visit [http://localhost:3000](http://localhost:3000). If Next.js reports another port, use that URL.
+On macOS or Linux, use `npm run dev`.
 
-## Where to add features
+## Where to implement features
 
-- `src/app/` — routes and pages.
-- `src/features/` — search and booking flows.
-- `src/components/` — shared interface.
-- `src/data/` — sample travel data.
+- `src/app/` — Next.js routes and pages, including search, booking, confirmation, bookings, tickets, and profile.
+- `src/features/` — search and booking feature components.
+- `src/components/` — shared layout and reusable UI components.
+- `src/data/` — local city, provider, and ticket data.
+- `src/store/` — application state.
+- `src/hooks/` — reusable React hooks.
+- `src/types/` and `src/utils/` — types and helper logic.
+
+Before changing code, run through search, result filtering, ticket selection, passenger entry, review, confirmation, and booking history. Useful improvements include clearer validation, richer filters, sorting, accessibility, saved searches, trip comparison, mobile usability, and better empty or error states.
 
 ## Troubleshooting
 
-- **Node version error:** use Node.js 24 LTS or another version meeting Next.js 16's `>=20.9.0` requirement.
+- **Node.js version error:** use Node.js 24 LTS or another version meeting `>=20.9.0`.
 - **Port 3000 is busy:** use the alternate URL printed by Next.js.
-- **Lockfile issue:** if `npm.cmd ci` reports an out-of-sync lockfile, ask an organizer rather than regenerating it.
+- **Lockfile mismatch:** the checked-in lockfile names the project `bilit`, while `package.json` names it `tripix`. If `npm ci` reports it as out of sync, ask an organizer rather than changing or regenerating the lockfile.
+- **Lint command:** the upstream `lint` script uses `next lint`, which is no longer supported by Next.js 16. Do not rely on this script during the event.
+- **Build:** `npm.cmd run build` on Windows or `npm run build` on macOS/Linux exists in the upstream `package.json`. The current install and browser launch were not verified in this documentation audit.
 
 ## Final demonstration checklist
 
-- What problem did we identify?
-- Why does it matter to users?
-- What feature did we propose?
-- What did we implement?
-- Can we demonstrate it working?
-- How is the improved application better than the original?
+- What problem did you identify, and why does it matter to users?
+- What improvement did you propose?
+- What did you implement?
+- Can you demonstrate it end to end on the running application?
+- How is the improved experience better than the original?
 
 Present a meaningful implementation or working prototype, not only an idea. A production-ready feature is not required.
