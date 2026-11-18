@@ -1,138 +1,81 @@
 # PancakeMaker
 
-**Original repository:** [https://github.com/momentmaker/pancakemaker.git](https://github.com/momentmaker/pancakemaker.git)
+**Upstream:** [github.com/momentmaker/pancakemaker](https://github.com/momentmaker/pancakemaker)
 
-## 1. Overview
+## About the project
 
-PancakeMaker is an offline-first personal and business expense tracker. It stores data in the browser and does not require an account or backend for local expense tracking. Cloud sync is optional.
+PancakeMaker is an offline-first expense tracker. Data stays in the browser; account-based cloud sync is optional.
 
-The project is a monorepo using React, TypeScript, Vite, Turborepo, npm workspaces, and Vitest.
+## Prerequisites
 
-## 2. Prerequisites
+- **Git**: install the [Windows version](https://git-scm.com/install/) with the default options.
+- **Node.js 20+** and **npm 10.9.0** (declared by the project): install the Windows LTS `.msi` from [nodejs.org](https://nodejs.org/en/download). If needed, set npm to the declared version with `npm.cmd install --global npm@10.9.0`.
+- A modern browser. [VS Code](https://code.visualstudio.com/download) and [Chrome](https://www.google.com/chrome/) are optional.
 
-Required:
+Cloudflare and Resend are needed only to configure or deploy cloud sync. No database, Docker, or WSL is required for local expense tracking.
 
-- Git.
-- Node.js 20 or newer.
-- npm 10.9.0, as specified by the root `package.json`.
-- A modern browser.
-
-Cloudflare Workers/D1 and a Resend account are only needed if you choose to configure and deploy cloud sync. Docker is not required for local development. A GitHub account is needed only if you want to fork and push your work.
-
-## 3. Verify prerequisites
+## Verify installation
 
 In PowerShell:
 
 ```powershell
-node -v
-npm -v
 git --version
+node -v
+npm.cmd -v
 ```
 
-Confirm Node reports version 20 or newer and npm reports version 10.9.0.
-If npm is a different version, install the version pinned by the project and verify it again:
+Use Node 20+ and confirm npm prints `10.9.0`.
+
+## Clone the project
 
 ```powershell
-npm install --global npm@10.9.0
-npm -v
-```
-
-## 4. Fork and clone
-
-For work you plan to push, open the [original repository](https://github.com/momentmaker/pancakemaker.git) on GitHub and select **Fork**. Then clone your fork, replacing `YOUR-USERNAME` with your GitHub username:
-
-```powershell
-git clone https://github.com/YOUR-USERNAME/pancakemaker.git
+git clone https://github.com/momentmaker/pancakemaker.git
 cd pancakemaker
 ```
 
-To explore without pushing changes, clone the original URL instead.
+For push access, fork the upstream repository first and clone your fork instead.
 
-## 5. Install dependencies
+## Install dependencies
 
-Install the root npm workspaces using the committed `package-lock.json`:
-
-```powershell
-npm ci
-```
-
-Use the root `package.json`; do not run a separate install in a subfolder.
-
-## 6. Environment configuration
-
-No environment file, account, or backend is required for local expense tracking. The frontend works without cloud sync. Currency conversion rates may require internet access.
-
-The frontend's `VITE_API_URL` defaults to `http://localhost:8787` for the local API. Cloud sync requires a configured backend; its Cloudflare and Resend setup is optional and is not needed to try the local app.
-
-## 7. Build and run locally
-
-Build the shared packages and workspace apps first:
+The monorepo uses npm workspaces. The upstream quick-start specifies:
 
 ```powershell
-npm run build
+npm.cmd install
 ```
 
-Then start the development servers:
+The repository has a `package-lock.json`, but its root version is `1.8.0` while `package.json` says `1.8.1`. **NOT TESTED:** a clean install from the current upstream snapshot. If npm changes the lockfile, do not commit that change without organizer/maintainer approval.
+
+## Run the application
+
+Build the shared workspace packages and apps from the repository root:
 
 ```powershell
-npm run dev
+npm.cmd run build
 ```
 
-The frontend is normally available at [http://localhost:5173](http://localhost:5173); the optional local API runs at [http://localhost:8787](http://localhost:8787). Keep the terminal open while using the app. Press **Ctrl+C** to stop the development processes.
-
-## 8. Verify the app
-
-- Open the Vite URL and confirm the dashboard loads.
-- Add or edit a sample expense and confirm it remains available after refreshing the page.
-- Local expense tracking should work without signing in or configuring the API.
-- If Vite reports a different port, use the URL it prints.
-- Sync features require the optional backend and are not part of the frontend-only check.
-
-## 9. Project structure
-
-| Path | Purpose |
-| --- | --- |
-| `apps/web/` | React PWA frontend, browser database, views, and sync client. |
-| `workers/api/` | Optional Cloudflare Worker API for authentication and sync. |
-| `packages/shared/` | Shared types, schemas, and constants. |
-| `turbo.json` | Turborepo task configuration. |
-
-## 10. Start developing a feature
-
-For frontend work, look in `apps/web/src/` and follow the existing component, hook, database, and view patterns. For shared types and schemas, use `packages/shared/`. Backend sync work belongs in `workers/api/` and needs the optional cloud setup.
-
-After making changes, rerun the build and tests from the repository root.
-
-## 11. Test, build, and deploy
-
-Run the workspace test suite:
+For the frontend-only workflow (supported by the web workspace), run:
 
 ```powershell
-npm run test
+npm.cmd run dev --workspace=@pancakemaker/web
 ```
 
-You can run one workspace's tests, if needed:
+Open [http://localhost:5173](http://localhost:5173), or use the URL Vite prints. The root `npm.cmd run dev` starts both Vite and the Wrangler API; the API is unnecessary for offline expense tracking and sync needs Cloudflare/Resend configuration.
 
-```powershell
-npm run test -w @pancakemaker/web
-npm run test -w @pancakemaker/api
-npm run test -w @pancakemaker/shared
-```
+## Where to add features
 
-The root `npm run lint` currently fails in the web workspace because its script calls `eslint`, which is not declared or installed by the checked-in workspace dependencies. Treat lint as unavailable unless that upstream dependency issue is fixed.
+- `apps/web/src/` — frontend, including `views/`, `components/`, and `db/`.
+- `packages/shared/` — shared types and schemas.
+- `workers/api/` — optional cloud-sync API.
 
-For a frontend-only production build, run `npm run build`. The static frontend output is `apps/web/dist/`; deploy that directory to a static hosting provider. Without a configured API, local browser-based expense tracking still works, but cloud sync is unavailable.
+## Troubleshooting
 
-Full-stack sync deployment requires Cloudflare D1 migrations, Worker configuration/secrets, and Resend email credentials. **NOT TESTED:** cloud sync deployment requires those external accounts and secrets. Follow the upstream self-hosting guide if you intend to deploy sync. Never commit or share secret values.
+- **Shared package cannot be resolved:** run `npm.cmd run build` from the monorepo root before starting the web workspace.
+- **Sync is unavailable:** expected in frontend-only mode; local expenses remain in the browser.
+- **Lint fails:** the web workspace calls `eslint`, which is not declared in the current workspace dependencies.
+- **Lockfile/install warning:** the current package and lock versions differ as noted above; do not delete the lockfile or run a separate install in a workspace.
 
-On the Windows clean-clone check with Node.js 24.22.3 and npm 10.9.0, `npm ci`, `npm run build`, and `npm run test` succeeded (412 tests passed). `npm run lint` failed for the missing ESLint dependency noted above.
+The previous clean-clone audit on an earlier snapshot passed the build and 412 tests; current upstream lockfile consistency has not been verified.
 
-## 12. Troubleshooting and submission
+## Submission
 
-- **Unsupported Node or npm:** Check `node -v` and `npm -v`; use Node 20+ and npm 10.9.0.
-- **Workspace build fails:** Run `npm ci` from the repository root, then `npm run build` before starting development servers.
-- **Sync is unavailable:** This is expected without the optional API and its Cloudflare/Resend configuration. Local tracking does not require sync.
-- **Port 5173 or 8787 is occupied:** Stop the other process and restart, or use the alternate URL printed by the dev server.
-- **Saved data is not shared across browsers:** Local data is stored in the browser; it is not synchronized unless the optional sync service is configured.
-
-For event work, fork the original project, create a feature branch, commit and push to your fork, then follow the organizers' announced submission process. Open an upstream pull request only if the maintainers accept contributions. Do not push directly to the original repository.
+Fork, branch, commit, and push to your fork. Follow [the central event instructions](../README.md); submit a pull request only if the maintainers permit it.

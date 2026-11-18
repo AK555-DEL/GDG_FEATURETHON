@@ -1,64 +1,30 @@
-# GDG Featurethon Participant Hub
+# GDG Featurethon
 
-Welcome to the GDG Featurethon. In this 4-5 hour event, choose one of five open-source projects, build a focused feature, and share your work. This repository is a directory and documentation hub; project source code remains in the original repositories.
+Welcome! In this 4–5 hour Featurethon, choose one project and build a focused feature. Each project stays in its original GitHub repository; this central repository provides the links and quick-start guides.
 
 ## Choose a project
 
-| Project | What it is | Main technologies | Setup notes | Original repository | Setup guide |
-| --- | --- | --- | --- | --- | --- |
-| **Simple React Ecommerce** | Frontend e-commerce demo with product browsing, cart, wishlist, and simulated account flows. | React, TypeScript, Vite, Tailwind CSS, Redux Toolkit, Cypress | Low: Node.js/npm; internet needed for DummyJSON product data. | [GitHub](https://github.com/alim1496/simple-react-ecommerce.git) | [Guide](./simple-react-ecommerce/README.md) |
-| **Tripix** | Travel-booking demo for bus, train, and flight searches and a sample booking flow. | Next.js, React, TypeScript, Tailwind CSS | Low: Node.js 20.9+ and npm; uses local sample data. | [GitHub](https://github.com/MiladJoodi/Tripix.git) | [Guide](./Tripix/README.md) |
-| **PancakeMaker** | Offline-first expense tracker with optional cloud sync. | React, TypeScript, Vite, Turborepo, Cloudflare Workers/D1 | Moderate: npm workspaces; local tracking works without cloud accounts. | [GitHub](https://github.com/momentmaker/pancakemaker.git) | [Guide](./pancakemaker/README.md) |
-| **IT Tools** | Collection of browser-based utilities for developers and IT professionals. | Vue, TypeScript, Vite, pnpm | Moderate: Node.js 18.18.2 and pnpm 9.11.0. | [GitHub](https://github.com/CorentinTh/it-tools.git) | [Guide](./it-tools/README.md) |
-| **myDrive** | Self-hosted file storage with a browser interface. | React, TypeScript, Node.js, Express, MongoDB | Higher: MongoDB and local secrets are required; the guide notes current clean-install backend build and Windows lint issues. | [GitHub](https://github.com/subnub/myDrive.git) | [Guide](./myDrive/README.md) |
+| Project | Required Node.js | Package manager | Additional requirements | Setup difficulty / readiness |
+| --- | --- | --- | --- | --- |
+| [Simple React Ecommerce](https://github.com/alim1496/simple-react-ecommerce) · [Guide](./simple-react-ecommerce/README.md)<br>Frontend shop demo with cart and wishlist. | 18+; not 19 (use 20+ LTS) | npm | Internet for product data | Low · **NOT READY:** clean install not confirmed |
+| [Tripix](https://github.com/MiladJoodi/Tripix) · [Guide](./Tripix/README.md)<br>Travel search and sample booking demo. | 20.9+ | npm | None | Low · **READY WITH WARNINGS:** lint script fails |
+| [PancakeMaker](https://github.com/momentmaker/pancakemaker) · [Guide](./pancakemaker/README.md)<br>Offline-first expense tracker. | 20+ | npm 10.9.0 | Cloudflare and Resend only for optional sync | Low · **READY WITH WARNINGS:** lockfile version mismatch |
+| [IT Tools](https://github.com/CorentinTh/it-tools) · [Guide](./it-tools/README.md)<br>Browser-based developer utilities. | 18.18.2 pinned (EOL); Node 24 was audited | pnpm 9.11.0 | None | Low · **READY WITH WARNINGS:** old Node pin |
+| [myDrive](https://github.com/subnub/myDrive) · [Guide](./myDrive/README.md)<br>Self-hosted file storage app. | 20.14+ | npm | MongoDB and local secrets | High · **NOT READY:** backend build fails |
 
-## General prerequisites
+## Before you start
 
-- [Git](https://git-scm.com/downloads) to clone a project.
-- A modern browser.
-- The project-specific Node.js and package manager versions listed in its setup guide.
-- MongoDB only if you choose myDrive. Docker is optional; the myDrive guide includes a native PowerShell workflow and options for obtaining MongoDB.
-
-Check your tools in PowerShell:
-
-```powershell
-node -v
-npm -v
-git --version
-```
-
-Not every project uses npm. IT Tools requires pnpm; follow that project's guide rather than substituting a package manager.
+- [Git](https://git-scm.com/install/) and a project-compatible [Node.js LTS installer](https://nodejs.org/en/download) are required. npm comes with Node.js.
+- [VS Code](https://code.visualstudio.com/download) and [Chrome](https://www.google.com/chrome/) are optional; any editor and modern browser work.
+- Use PowerShell. The documented local workflows do not require Docker or WSL. myDrive additionally needs MongoDB; see its guide.
+- Follow each guide's package-manager version and install command. Do not delete or regenerate lockfiles.
 
 ## Participant workflow
 
-1. Select the assigned project and read its setup guide before installing dependencies.
-2. On GitHub, fork the original project to your account if you plan to submit code. You can clone the original for read-only exploration.
-3. Clone your fork, install dependencies using the project's lockfile, and follow its local verification checklist.
-4. Create a feature branch, make a focused change, run the documented checks, and commit your work.
-5. Push to your fork. Open a pull request to the original repository only if its maintainers accept contributions and you have followed their contribution rules.
+1. Choose one project and check its readiness note before installing.
+2. Fork that project's original repository on GitHub, then clone your fork using its guide.
+3. Create a feature branch: `git switch -c feat/short-feature-name`.
+4. Make a focused change, run the checks in the guide, then commit and push to your fork.
+5. Follow the submission method announced by organizers. No submission URL or judging rules are defined here. Open an upstream pull request only if the maintainers allow it.
 
-For a typical fork workflow:
-
-```powershell
-git clone https://github.com/YOUR-USERNAME/PROJECT.git
-cd PROJECT
-git switch -c feat/short-feature-name
-```
-
-Replace the placeholders with your own fork and project folder. Do not push directly to a repository you do not own.
-
-## Troubleshooting and help
-
-If setup fails, check that the terminal is in the cloned project folder, confirm the required runtime/package-manager versions in its guide, and use the exact install command for its lockfile. Include your operating system, project name, command, and first useful error message when asking for help. Redact passwords, tokens, and private URLs.
-
-Do not delete lockfiles or randomly change dependency versions. Never commit `.env` files, API keys, passwords, or other secrets.
-
-## Submissions
-
-The central repository does not yet specify an event deadline, submission form/channel, judging criteria, or required demo format. Organizers should announce those details separately. Until then, keep your work on your fork and do not assume a pull request or direct push is the event submission method.
-
-## Contributing
-
-For changes to this project hub, fork this repository, create a branch, update only the relevant documentation, check links and commands, and open a pull request.
-
-For feature work, use the selected project's original repository and its contribution instructions. Each project has its own license and review process; a fork and pull request may be required.
+Never commit `.env` files, API keys, passwords, or other secrets. If setup fails, share the project, operating system, command, and first useful error with organizers; redact credentials.
