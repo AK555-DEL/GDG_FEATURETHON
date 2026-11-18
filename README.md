@@ -10,13 +10,12 @@ Welcome! In this 4–5 hour Featurethon, choose one project and build a focused 
 | [Tripix](https://github.com/MiladJoodi/Tripix) · [Guide](./Tripix/README.md)<br>Travel search and sample booking demo. | 20.9+ | npm | None | Low · **READY WITH WARNINGS:** lint script fails |
 | [PancakeMaker](https://github.com/momentmaker/pancakemaker) · [Guide](./pancakemaker/README.md)<br>Offline-first expense tracker. | 20+ | npm 10.9.0 | Cloudflare and Resend only for optional sync | Low · **READY WITH WARNINGS:** lockfile version mismatch |
 | [IT Tools](https://github.com/CorentinTh/it-tools) · [Guide](./it-tools/README.md)<br>Browser-based developer utilities. | 18.18.2 pinned (EOL); Node 24 was audited | pnpm 9.11.0 | None | Low · **READY WITH WARNINGS:** old Node pin |
-| [myDrive](https://github.com/subnub/myDrive) · [Guide](./myDrive/README.md)<br>Self-hosted file storage app. | 20.14+ | npm | MongoDB and local secrets | High · **NOT READY:** backend build fails |
 
 ## Before you start
 
 - [Git](https://git-scm.com/install/) and a project-compatible [Node.js LTS installer](https://nodejs.org/en/download) are required. npm comes with Node.js.
 - [VS Code](https://code.visualstudio.com/download) and [Chrome](https://www.google.com/chrome/) are optional; any editor and modern browser work.
-- Use PowerShell. The documented local workflows do not require Docker or WSL. myDrive additionally needs MongoDB; see its guide.
+- Use PowerShell. The documented local workflows do not require Docker or WSL.
 - Follow each guide's package-manager version and install command. Do not delete or regenerate lockfiles.
 
 ## Participant workflow
