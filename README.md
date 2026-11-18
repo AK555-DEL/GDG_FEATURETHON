@@ -18,8 +18,6 @@ Projects are assigned; participants do not choose one.
 | [Tripix](https://github.com/MiladJoodi/Tripix) · [Guide](./Tripix/README.md) | Sample travel search and booking app for bus, train, and air. | Next.js 16: `>=20.9.0`; Node 24 LTS recommended | npm | None; sample data included |
 | [PancakeMaker](https://github.com/momentmaker/pancakemaker) · [Guide](./pancakemaker/README.md) | Offline-first expense tracker with optional cloud sync. | `>=20`; Node 24 LTS recommended | npm 10.9.0 | Cloudflare and Resend only for optional sync |
 
-A fresh Windows install of Simple React Ecommerce is **NOT TESTED**: a previous attempt did not finish. Check its guide before the event.
-
 ## Event rules
 
 - The event starts at **9:00 AM sharp**. Registration closes at **9:30 AM**.
